@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  gradYear: 1
+  studentID: 1
+  firstName: MyText
+  lastName: MyText
+  balance: 1
+
+two:
+  gradYear: 1
+  studentID: 1
+  firstName: MyText
+  lastName: MyText
+  balance: 1

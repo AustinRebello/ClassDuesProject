@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  gradYear: 1
+  classAdvisorOne: MyText
+  classAdvisorTwo: MyText
+
+two:
+  gradYear: 1
+  classAdvisorOne: MyText
+  classAdvisorTwo: MyText
