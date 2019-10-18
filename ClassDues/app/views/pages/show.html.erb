@@ -1,0 +1,7 @@
+<h1>Pages#show</h1>
+<h3>Importer Test</h3>
+<%= form_tag  pages_index_path, multipart: true do %>
+<%= file_field_tag :file %>
+<%= submit_tag "Submit File" %>
+<% end %>
+<p>Find me in app/views/pages/show.html.erb</p>
