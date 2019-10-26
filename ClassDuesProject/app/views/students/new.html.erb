@@ -1,0 +1,16 @@
+<div class="px-5 pt-2">
+
+<h1>New Class</h1>
+<p>Graduation Year</p>
+<%= form_with model: @student, class: "nifty_form", url: students_url do |f| %>
+<p><%= f.text_field :gradYear ,size: "30x1", placeholder: @student.gradYear%></p>
+<p>Student ID</p>
+<p><%= f.text_field :studentID ,size: "30x1", placeholder: @student.studentID%></p>
+<p>First Name</p>
+<p><%= f.text_area :firstName, size: "100x1", placeholder: @student.firstName %></p>
+<p>Last Name</p>
+<p><%= f.text_area :lastName, size: "100x1", placeholder: @student.lastName %></p>
+<%= f.hidden_field :balance, value: 100%>
+  <p><%= f.submit "Add Student", class: "bg-primary text-light rounded p-1"%> <%=link_to "View All Students", students_url %></p>
+<% end %>
+</div>

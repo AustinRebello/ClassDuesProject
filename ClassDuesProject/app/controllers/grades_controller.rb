@@ -40,9 +40,12 @@ class GradesController < ApplicationController
 
   def destroy
     @grade = Grade.find(params[:id])
-    #students = Student.find_by(question_id: @grade.id)
+    @students = Student.where(:gradYear => @grade.gradYear)
+    @students.each do |s|
+      s.destroy
+    end
     @grade.destroy
-    #@students.destroy
+
     redirect_to grades_url
   end
   private

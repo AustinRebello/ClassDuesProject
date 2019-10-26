@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     collection {
       post :import
       get :file
+      post :findStudent
     }
   end
 

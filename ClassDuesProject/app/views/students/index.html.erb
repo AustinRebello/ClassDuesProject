@@ -1,6 +1,12 @@
 <div class="px-5 pt-2">
-<h1>All Students Test</h1>
-
+<h1>All Students</h1>
+<%= link_to "Add a New Student", new_student_url, class: "text-primary"%>
+<%= form_tag(findStudent_students_path method: :post) do |f| %>
+  <p>
+    <%= text_field_tag :studentID, "Search for a Student" %>
+    <%= submit_tag "Search"%>
+  </p>
+<% end %>
 <div class="container">
   <div class="row border-top pt-3">
     <div class="col-sm-5">
