@@ -1,4 +1,5 @@
 class CreateStudents < ActiveRecord::Migration[5.2]
+  attr_accessor :paidBalance
   def change
     create_table :students do |t|
       t.integer :gradYear

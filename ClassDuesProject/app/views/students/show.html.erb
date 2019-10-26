@@ -8,5 +8,5 @@
   <div>
     <h4>Balance Remaining: $<%= @student.balance %></h4>
   </div>
-  <p><%= link_to "Edit Student", edit_student_url(:id => @student.id)%> | <%= link_to "Delete Student", students_delete_url(:id => @student.id)%></p>
+  <p><%= link_to "Edit Student", edit_student_url(:id => @student.id)%> | <%= link_to "Delete Student", students_delete_url(:id => @student.id)%> | <%= link_to "Pay Dues", payDues_students_url(:id => @student.id)%></p>
 </div>

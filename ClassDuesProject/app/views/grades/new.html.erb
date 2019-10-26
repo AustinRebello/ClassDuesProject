@@ -5,9 +5,9 @@
 <%= form_with model: @grade, class: "nifty_form", url: grades_url do |f| %>
   <p><%= f.text_field :gradYear ,size: "30x1", placeholder: "Gradutation Year"%></p>
   <p>First Class Advisor</p>
-  <p><%= f.text_area :classAdvisorOne, size: "150x1", placeholder: "Mr. / Mrs. Last Name" %></p>
+  <p><%= f.text_field :classAdvisorOne, size: "70x1", placeholder: "Mr. / Mrs. Last Name" %></p>
   <p>Second Class Advisor</p>
-  <p><%= f.text_area :classAdvisorTwo, size: "150x1", placeholder: "Mr. / Mrs. Last Name" %></p>
+  <p><%= f.text_field :classAdvisorTwo, size: "70x1", placeholder: "Mr. / Mrs. Last Name" %></p>
   <p><%= f.submit "Create Class", class: "bg-primary text-light rounded p-1"%> <%=link_to "View All Classes", grades_url %></p>
 <% end %>
 </div>

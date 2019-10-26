@@ -7,11 +7,11 @@
   <p>Student ID</p>
   <p><%= f.text_field :studentID ,size: "30x1", placeholder: @student.studentID%></p>
   <p>First Name</p>
-  <p><%= f.text_area :firstName, size: "100x1", placeholder: @student.firstName %></p>
+  <p><%= f.text_field :firstName, size: "30x1", placeholder: @student.firstName %></p>
   <p>Last Name</p>
-  <p><%= f.text_area :lastName, size: "100x1", placeholder: @student.lastName %></p>
+  <p><%= f.text_field :lastName, size: "30x1", placeholder: @student.lastName %></p>
   <p>Balance</p>
-  <p><%= f.text_area :balance, size: "100x1", placeholder: @student.balance %></p>
+  <p><%= f.text_field :balance, size: "10x1", placeholder: @student.balance %></p>
   <p><%= f.submit "Save Changes", class: "bg-primary text-light rounded p-1"%> <%=link_to "View All Students", students_url %></p>
 <% end %>
 </div>
