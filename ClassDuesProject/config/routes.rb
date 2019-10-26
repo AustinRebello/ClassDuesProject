@@ -2,9 +2,16 @@ Rails.application.routes.draw do
 
   get 'grades/delete'
   get 'students/delete'
-  resources :grades
-  resources :students
   get 'pages/index'
+  get 'students/file'
+  resources :grades
+  resources :students do
+    collection {
+      post :import
+      get :file
+    }
+  end
+
 
 
   root 'pages#index'

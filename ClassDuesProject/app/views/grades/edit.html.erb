@@ -8,6 +8,6 @@
   <p><%= f.text_area :classAdvisorOne, size: "100x1", placeholder: "" %></p>
   <p>Class Advisor Two</p>
   <p><%= f.text_area :classAdvisorTwo, size: "100x1", placeholder: "" %></p>
-  <p><%= f.submit "Save Changes", class: "bg-primary text-light rounded p-1"%> <%=link_to "View All Grades", grades_url %></p>
+  <p><%= f.submit "Save Changes", class: "bg-primary text-light rounded p-1"%> <%=link_to "View All Grades", grades_url %> | <%=link_to "Add Student CSV File", file_students_url %></p>
 <% end %>
 </div>

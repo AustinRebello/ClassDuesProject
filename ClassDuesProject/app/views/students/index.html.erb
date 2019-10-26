@@ -1,0 +1,30 @@
+<div class="px-5 pt-2">
+<h1>All Students Test</h1>
+
+<div class="container">
+  <div class="row border-top pt-3">
+    <div class="col-sm-5">
+      <p><strong>First Name</strong></p>
+    </div>
+    <div class="col-sm-5">
+      <p><strong>Last Name</strong></p>
+    </div>
+    <div class="col-sm-2">
+      <p><strong>Student ID</strong></p>
+    </div>
+  </div>
+  <% @students.each do |q| %>
+    <div class="row border-top pt-3">
+      <div class="col-sm-5">
+        <strong><%= q.firstName %></strong>
+      </div>
+      <div class="col-sm-5">
+        <p><strong><%= q.lastName %></strong></p>
+      </div>
+      <div class="col-sm-2">
+        <p><strong><%= q.studentID %></strong></p>
+      </div>
+    </div>
+  <% end %>
+
+  </div>

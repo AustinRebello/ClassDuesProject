@@ -10,7 +10,7 @@ class GradesController < ApplicationController
   def create
     @grade = Grade.new(grade_params)
     if @grade.save
-      redirect_to grades_url
+      redirect_to file_students_url
     else
       render new_grade_url
     end
