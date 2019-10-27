@@ -1,5 +1,4 @@
 class CreateStudents < ActiveRecord::Migration[5.2]
-  attr_accessor :paidBalance
   def change
     create_table :students do |t|
       t.integer :gradYear
@@ -7,7 +6,7 @@ class CreateStudents < ActiveRecord::Migration[5.2]
       t.text :firstName
       t.text :lastName
       t.integer :balance
-
+      t.integer :paidBalance
       t.timestamps
     end
   end

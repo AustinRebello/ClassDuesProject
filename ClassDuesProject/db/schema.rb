@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2019_10_18_142757) do
     t.text "firstName"
     t.text "lastName"
     t.integer "balance"
+    t.integer "paidBalance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

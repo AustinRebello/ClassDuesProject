@@ -10,6 +10,7 @@ class Student < ApplicationRecord
         newStud.firstName=row[2]
         newStud.lastName=row[3]
         newStud.balance=100
+        newStud.paidBalance=0
         newStud.save
       end
   end

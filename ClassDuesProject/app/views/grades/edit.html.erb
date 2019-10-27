@@ -1,13 +1,12 @@
 <div class="px-5 pt-2">
 
 <h1>Edit Class</h1>
-<p>Year</p>
 <%= form_with model: @grade, class: "nifty_form", url: grade_url(id:@grade.id), method: :patch do |f| %>
-  <p><%= f.text_field :gradYear ,size: "30x1", placeholder: ""%></p>
+  <p><%= f.hidden_field :gradYear%></p>
   <p>Class Advisor One</p>
-  <p><%= f.text_area :classAdvisorOne, size: "100x1", placeholder: "" %></p>
+  <p><%= f.text_field :classAdvisorOne, size: "30x1", placeholder: "" %></p>
   <p>Class Advisor Two</p>
-  <p><%= f.text_area :classAdvisorTwo, size: "100x1", placeholder: "" %></p>
+  <p><%= f.text_field :classAdvisorTwo, size: "30x1", placeholder: "" %></p>
   <p><%= f.submit "Save Changes", class: "bg-primary text-light rounded p-1"%> <%=link_to "View All Grades", grades_url %> | <%=link_to "Add Student CSV File", file_students_url %></p>
 <% end %>
 </div>

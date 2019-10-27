@@ -1,6 +1,7 @@
 class GradesController < ApplicationController
   def index
     @grades = Grade.all
+
   end
 
   def new
@@ -18,6 +19,11 @@ class GradesController < ApplicationController
 
   def show
     @grade = Grade.find(params[:id])
+    @students = Student.where(:gradYear =>  @grade.gradYear)
+    @allDues = 0
+    @students.each do |s|
+      @allDues = @allDues + s.balance
+    end
   end
 
   def edit

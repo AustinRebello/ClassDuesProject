@@ -1,11 +1,18 @@
-<div class="border-bottom w-50 mx-auto mt-5">
-  <div>
-    <h2><%= @grade.gradYear %></h2>
-  </div>
-  <div>
-    <h4>Class Advisors: </h4>
-    <p><%= @grade.classAdvisorOne %></p>
-    <p><%= @grade.classAdvisorTwo %></p>
+<div class="border rounded w-50 mx-auto mt-5">
+  <div class="container">
+
+      <div class="row">
+        <p>Class of <%= @grade.gradYear %></p>
+      </div>
+      <div class="row">
+        <p>Class Advisor: <%= @grade.classAdvisorOne %></p>
+      </div>
+      <div class="row">
+        <p>Class Advisor: <%= @grade.classAdvisorTwo %></p>
+      </div>
+      <div class="row">
+        <p>Dues Owed: $<%= @allDues %></p>
+    </div>
   </div>
   <p><%= link_to "Edit Class", edit_grade_url(:id => @grade.id)%> | <%= link_to "Delete Class", grades_delete_url(:id => @grade.id)%></p>
 </div>

@@ -11,7 +11,8 @@ Rails.application.routes.draw do
       get :file
       post :findStudent
       get :payDues
-
+      patch :updateDues
+      get :calculateDues
     }
   end
 

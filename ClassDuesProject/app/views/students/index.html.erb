@@ -1,34 +1,40 @@
 <div class="px-5 pt-2">
 <h1>All Students</h1>
-<%= link_to "Add a New Student", new_student_url, class: "text-primary"%>
+<p><%= link_to "Add a New Student", new_student_url, class: "bg-primary text-light rounded p-1"%></p>
 <%= form_tag(findStudent_students_path method: :post) do |f| %>
   <p>
-    <%= text_field_tag :studentID, "Search for a Student" %>
+    <%= number_field_tag :studentID%>
     <%= submit_tag "Search"%>
   </p>
 <% end %>
 <div class="container">
   <div class="row border-top pt-3">
-    <div class="col-sm-5">
+    <div class="col-sm-3">
       <p><strong>First Name</strong></p>
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-3">
       <p><strong>Last Name</strong></p>
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-3">
       <p><strong>Student ID</strong></p>
+    </div>
+    <div class="col-sm-3">
+      <p><strong>Dues Owed</strong></p>
     </div>
   </div>
   <% @students.each do |q| %>
     <div class="row border-top pt-3">
-      <div class="col-sm-5">
+      <div class="col-sm-3">
         <strong><%= q.firstName %></strong>
       </div>
-      <div class="col-sm-5">
+      <div class="col-sm-3">
         <p><strong><%= q.lastName %></strong></p>
       </div>
-      <div class="col-sm-2">
+      <div class="col-sm-3">
         <p><strong><%= q.studentID %></strong></p>
+      </div>
+      <div class="col-sm-3">
+        <p><strong><%= q.balance %></strong></p>
       </div>
     </div>
   <% end %>

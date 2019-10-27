@@ -11,6 +11,7 @@
 <p>Last Name</p>
 <p><%= f.text_field :lastName, size: "30x1", placeholder: @student.lastName %></p>
 <%= f.hidden_field :balance, value: 100%>
+<%= f.hidden_field :paidBalance, value: 0%>
   <p><%= f.submit "Add Student", class: "bg-primary text-light rounded p-1"%> <%=link_to "View All Students", students_url %></p>
 <% end %>
 </div>
