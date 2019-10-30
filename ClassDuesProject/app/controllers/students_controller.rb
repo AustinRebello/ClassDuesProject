@@ -4,12 +4,12 @@ class StudentsController < ApplicationController
   end
 
   def import
-    Student.import(params[:file])
-    redirect_to grades_url
+    Student.import(params[:file],params[:graduating_class_id],params[:gradYear])
+    redirect_to graduating_classes_url
   end
 
   def file
-
+    @student = Student.new
   end
 
   def new
@@ -80,8 +80,8 @@ class StudentsController < ApplicationController
   def student_params
     params.require(:student).permit(:gradYear, :studentID, :firstName, :lastName, :balance, :paidBalance)
   end
-  def dues_params
-    params.require(:student).permit(:paidBalance)
+  def create_params
+    params.permit(:file,:graduating_class_id,:gradYear)
   end
 
 end

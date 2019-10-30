@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Gradyear:</strong>
+  <%= @graduating_class.gradYear %>
+</p>
+
+<p>
+  <strong>Classadvisorone:</strong>
+  <%= @graduating_class.classAdvisorOne %>
+</p>
+
+<p>
+  <strong>Classadvisortwo:</strong>
+  <%= @graduating_class.classAdvisorTwo %>
+</p>
+
+<%= link_to 'Edit', edit_graduating_class_path(@graduating_class) %> |
+<%= link_to 'Back', graduating_classes_path %>

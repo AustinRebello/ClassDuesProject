@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
 
+
   get 'grades/delete'
   get 'students/delete'
   get 'pages/index'
   get 'students/file'
+  resources :graduating_classes do
+    collection {
+      get :delete
+    }
+  end
   resources :grades
   resources :students do
     collection {

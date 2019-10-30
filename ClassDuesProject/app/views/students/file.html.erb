@@ -1,4 +1,6 @@
 <%= form_tag import_students_url, multipart: true do %>
 <p>Submit the CSV File Here: <%= file_field_tag :file, accept: 'text/csv'%></p>
+<% hidden_field :graduating_class_id, :value => :gcID %>
+<% hidden_field :gradYear, :value => :gY %>
 <%= submit_tag "Submit Students File" %>
 <% end %>
