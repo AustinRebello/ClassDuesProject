@@ -4,12 +4,17 @@ class StudentsController < ApplicationController
   end
 
   def import
-    Student.import(params[:file],params[:graduating_class_id],params[:gradYear])
+    @file = params[:file]
+    @classOf = GraduatingClass.find(params[:graduating_class_id])
+    @gID = @classOf.id
+    @gY = @classOf.gradYear
+    Student.import(@file, @gID, @gY)
     redirect_to graduating_classes_url
   end
 
   def file
     @student = Student.new
+    @classOf = GraduatingClass.find(params[:gcID])
   end
 
   def new

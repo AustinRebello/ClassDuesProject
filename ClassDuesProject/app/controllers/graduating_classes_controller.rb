@@ -31,7 +31,7 @@ class GraduatingClassesController < ApplicationController
 
     respond_to do |format|
       if @graduating_class.save
-        format.html { redirect_to file_students_url(:gcID => @graduating_class.id, :gY => @graduating_class.gradYear), notice: 'Graduating class was successfully created.' }
+        format.html { redirect_to file_students_url(:gcID => @graduating_class.id), notice: 'Graduating class was successfully created.' }
         format.json { render :show, status: :created, location: @graduating_class }
       else
         format.html { render :new }
