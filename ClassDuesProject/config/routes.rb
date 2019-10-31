@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-
-
-  get 'grades/delete'
   get 'students/delete'
   get 'pages/index'
   get 'students/file'
@@ -10,14 +7,13 @@ Rails.application.routes.draw do
       get :delete
     }
   end
-  resources :grades
   resources :students do
     collection {
       post :import
       get :file
       post :findStudent
       get :payDues
-      patch :updateDues
+      post :updateDues
       get :calculateDues
     }
   end

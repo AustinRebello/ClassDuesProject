@@ -1,57 +1,27 @@
 class StudentsController < ApplicationController
+  before_action :set_student, only: [:show, :edit, :update, :destroy, :updateDues]
+
+  # GET /students
+  # GET /students.json
   def index
     @students = Student.all
-  end
-
-  def import
-    @file = params[:file]
-    @classOf = GraduatingClass.find(params[:graduating_class_id])
-    @gID = @classOf.id
-    @gY = @classOf.gradYear
-    Student.import(@file, @gID, @gY)
-    redirect_to graduating_classes_url
-  end
-
-  def file
-    @student = Student.new
-    @classOf = GraduatingClass.find(params[:gcID])
-  end
-
-  def new
-    @student = Student.new
-  end
-
-  def create
-    @student = Student.new(student_params)
-    if @student.save
-      redirect_to students_url
-    else
-      render new_student_url
-    end
-  end
-
-  def show
-    @student = Student.find(params[:id])
-  end
-
-  def edit
-    @student = Student.find(params[:id])
   end
   def payDues
     @student = Student.find(params[:id])
   end
-
-  def update
-    @student = Student.find(params[:id])
-    @student.update(student_params)
-    if @student.save
-      redirect_to students_url
-    else
-      render student_url method: :post
-    end
+  def import
+      @file = params[:file]
+      @classOf = GraduatingClass.find(params[:graduating_class_id])
+      @gID = @classOf.id
+      @gY = @classOf.gradYear
+      Student.import(@file, @gID, @gY)
+      redirect_to graduating_classes_url
+  end
+  def file
+    @student = Student.new
+    @classOf = GraduatingClass.find(params[:gcID])
   end
   def updateDues
-    @student = Student.find(params[:id])
     @student.update(student_params)
     if @student.save
       redirect_to calculateDues_students_url(:id => @student.id)
@@ -68,25 +38,68 @@ class StudentsController < ApplicationController
       render calculateDues_students_url method: :post
     end
   end
-  def delete
-    @student = Student.find(params[:id])
+  # GET /students/1
+  # GET /students/1.json
+  def show
   end
 
+  # GET /students/new
+  def new
+    @student = Student.new
+  end
+
+  # GET /students/1/edit
+  def edit
+  end
+
+  # POST /students
+  # POST /students.json
+  def create
+    @student = Student.new(student_params)
+
+    respond_to do |format|
+      if @student.save
+        format.html { redirect_to @student, notice: 'Student was successfully created.' }
+        format.json { render :show, status: :created, location: @student }
+      else
+        format.html { render :new }
+        format.json { render json: @student.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /students/1
+  # PATCH/PUT /students/1.json
+  def update
+    respond_to do |format|
+      if @student.update(student_params)
+        format.html { redirect_to @student, notice: 'Student was successfully updated.' }
+        format.json { render :show, status: :ok, location: @student }
+      else
+        format.html { render :edit }
+        format.json { render json: @student.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /students/1
+  # DELETE /students/1.json
   def destroy
-    @student = Student.find(params[:id])
     @student.destroy
-    redirect_to students_url
-  end
-  def findStudent
-    @foundStudent = Student.where(studentID: params[:studentID]).take!
-    redirect_to student_url(@foundStudent.id)
-  end
-  private
-  def student_params
-    params.require(:student).permit(:gradYear, :studentID, :firstName, :lastName, :balance, :paidBalance)
-  end
-  def create_params
-    params.permit(:file,:graduating_class_id,:gradYear)
+    respond_to do |format|
+      format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_student
+      @student = Student.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def student_params
+      params.require(:student).permit(:gradYear, :graduation_classes_id, :firstName, :lastName, :studentID, :balance, :paidBalance)
+    end
 end

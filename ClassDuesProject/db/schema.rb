@@ -10,15 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_29_162517) do
-
-  create_table "grades", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "gradYear"
-    t.text "classAdvisorOne"
-    t.text "classAdvisorTwo"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 2019_10_31_003358) do
 
   create_table "graduating_classes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "gradYear"
@@ -31,9 +23,9 @@ ActiveRecord::Schema.define(version: 2019_10_29_162517) do
   create_table "students", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "gradYear"
     t.integer "graduating_class_id"
+    t.string "firstName"
+    t.string "lastName"
     t.integer "studentID"
-    t.text "firstName"
-    t.text "lastName"
     t.integer "balance"
     t.integer "paidBalance"
     t.datetime "created_at", null: false

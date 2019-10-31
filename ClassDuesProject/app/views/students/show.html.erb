@@ -1,12 +1,40 @@
-<div class="border-bottom w-50 mx-auto mt-5">
-  <div>
-    <h2><%= @student.studentID %></h2>
-  </div>
-  <div>
-    <h4>Name: <%= @student.firstName %> <%= @student.lastName %></h4>
-  </div>
-  <div>
-    <h4>Balance Remaining: $<%= @student.balance %></h4>
-  </div>
-  <p><%= link_to "Edit Student", edit_student_url(:id => @student.id)%> | <%= link_to "Delete Student", students_delete_url(:id => @student.id)%> | <%= link_to "Pay Dues", payDues_students_url(:id => @student.id)%></p>
-</div>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Gradyear:</strong>
+  <%= @student.gradYear %>
+</p>
+
+<p>
+  <strong>Graduation classes:</strong>
+  <%= @student.graduating_class_id %>
+</p>
+
+<p>
+  <strong>Firstname:</strong>
+  <%= @student.firstName %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @student.lastName %>
+</p>
+
+<p>
+  <strong>Studentid:</strong>
+  <%= @student.studentID %>
+</p>
+
+<p>
+  <strong>Balance:</strong>
+  <%= @student.balance %>
+</p>
+
+<p>
+  <strong>Paidbalance:</strong>
+  <%= @student.paidBalance %>
+</p>
+
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<%= link_to 'Back', students_path %>
+<%= link_to "Pay Dues", payDues_students_url(:id => @student.id)%>

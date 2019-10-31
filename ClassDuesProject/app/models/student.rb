@@ -1,4 +1,5 @@
 class Student < ApplicationRecord
+  validates :studentID, uniqueness: true
   belongs_to :graduating_class
   require 'csv'
   def self.import(f,gID,gY)

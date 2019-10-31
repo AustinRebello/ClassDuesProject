@@ -1,7 +1,7 @@
 <%= form_with(model: graduating_class, local: true) do |form| %>
   <% if graduating_class.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(graduating_class.errors.count, "error") %> prohibited this graduating_class from being saved:</h2>
+      <h2><%= pluralize(graduating_class.errors.count, "error") %> prohibited this class from being saved:</h2>
 
       <ul>
       <% graduating_class.errors.full_messages.each do |message| %>

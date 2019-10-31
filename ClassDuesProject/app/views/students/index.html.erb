@@ -1,42 +1,39 @@
-<div class="px-5 pt-2">
-<h1>All Students</h1>
-<p><%= link_to "Add a New Student", new_student_url, class: "bg-primary text-light rounded p-1"%></p>
-<%= form_tag(findStudent_students_path method: :post) do |f| %>
-  <p>
-    <%= number_field_tag :studentID%>
-    <%= submit_tag "Search"%>
-  </p>
-<% end %>
-<div class="container">
-  <div class="row border-top pt-3">
-    <div class="col-sm-3">
-      <p><strong>First Name</strong></p>
-    </div>
-    <div class="col-sm-3">
-      <p><strong>Last Name</strong></p>
-    </div>
-    <div class="col-sm-3">
-      <p><strong>Student ID</strong></p>
-    </div>
-    <div class="col-sm-3">
-      <p><strong>Dues Owed</strong></p>
-    </div>
-  </div>
-  <% @students.each do |q| %>
-    <div class="row border-top pt-3">
-      <div class="col-sm-3">
-        <strong><%= q.firstName %></strong>
-      </div>
-      <div class="col-sm-3">
-        <p><strong><%= q.lastName %></strong></p>
-      </div>
-      <div class="col-sm-3">
-        <p><strong><%= q.studentID %></strong></p>
-      </div>
-      <div class="col-sm-3">
-        <p><strong><%= q.balance %></strong></p>
-      </div>
-    </div>
-  <% end %>
+<p id="notice"><%= notice %></p>
 
-  </div>
+<h1>Students</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Gradyear</th>
+      <th>Graduating class ID</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Studentid</th>
+      <th>Balance</th>
+      <th>Paidbalance</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.gradYear %></td>
+        <td><%= student.graduating_class_id %></td>
+        <td><%= student.firstName %></td>
+        <td><%= student.lastName %></td>
+        <td><%= student.studentID %></td>
+        <td><%= student.balance %></td>
+        <td><%= student.paidBalance %></td>
+        <td><%= link_to 'Show', student %></td>
+        <td><%= link_to 'Edit', edit_student_path(student) %></td>
+        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Student', new_student_path %>

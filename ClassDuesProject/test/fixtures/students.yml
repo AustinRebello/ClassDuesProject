@@ -2,14 +2,18 @@
 
 one:
   gradYear: 1
+  graduation_classes_id: 1
+  firstName: MyString
+  lastName: MyString
   studentID: 1
-  firstName: MyText
-  lastName: MyText
   balance: 1
+  paidBalance: 1
 
 two:
   gradYear: 1
+  graduation_classes_id: 1
+  firstName: MyString
+  lastName: MyString
   studentID: 1
-  firstName: MyText
-  lastName: MyText
   balance: 1
+  paidBalance: 1
