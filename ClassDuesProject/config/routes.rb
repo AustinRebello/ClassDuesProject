@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :roles
   get 'students/delete'
   get 'pages/index'
   get 'students/file'
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
       get :file
       post :findStudent
       get :payDues
-      post :updateDues
+      patch :updateDues
       get :calculateDues
     }
   end

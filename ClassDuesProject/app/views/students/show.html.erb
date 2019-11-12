@@ -5,10 +5,6 @@
   <%= @student.gradYear %>
 </p>
 
-<p>
-  <strong>Graduation classes:</strong>
-  <%= @student.graduating_class_id %>
-</p>
 
 <p>
   <strong>Firstname:</strong>
@@ -30,10 +26,6 @@
   <%= @student.balance %>
 </p>
 
-<p>
-  <strong>Paidbalance:</strong>
-  <%= @student.paidBalance %>
-</p>
 
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Back', students_path %>
