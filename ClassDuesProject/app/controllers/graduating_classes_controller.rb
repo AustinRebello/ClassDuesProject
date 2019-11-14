@@ -1,4 +1,5 @@
 class GraduatingClassesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_graduating_class, only: [:show, :edit, :update, :destroy]
 
   # GET /graduating_classes
@@ -15,13 +16,16 @@ class GraduatingClassesController < ApplicationController
   # GET /graduating_classes/new
   def new
     @graduating_class = GraduatingClass.new
+    authorize self
   end
 
   # GET /graduating_classes/1/edit
   def edit
+    authorize self
   end
   def delete
     @graduating_class = GraduatingClass.find(params[:id])
+    authorize self
   end
 
   # POST /graduating_classes
@@ -58,7 +62,6 @@ class GraduatingClassesController < ApplicationController
   # DELETE /graduating_classes/1.json
   def destroy
     @graduating_class.destroy
-    @graduating_class.students.destroy
     respond_to do |format|
       format.html { redirect_to graduating_classes_url, notice: 'Graduating class was successfully destroyed.' }
       format.json { head :no_content }

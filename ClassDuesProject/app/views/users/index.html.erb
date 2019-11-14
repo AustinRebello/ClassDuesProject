@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row border-top pt-3">
+    <div class="col-sm-1">
+      <p><strong>ID</strong></p>
+    </div>
+    <div class="col-sm-3">
+      <p><strong>Email</strong></p>
+    </div>
+    <div class="col-sm-3">
+      <p><strong>Roles</strong></p>
+    </div>
+    <div class="col-sm-5">
+      <p><strong>Edit Roles</strong></p>
+    </div>
+  </div>
+  <% @users.each do |u| %>
+  <% if current_user.roles.include?(Role.where(title: "Class Advisor").take) && (u.roles.include?(Role.where(title: "No Role").take) || u.roles.include?(Role.where(title: "Class Treasurer").take))%>
+    <div class="row border-top pt-3">
+      <div class="col-sm-1">
+        <strong><%= u.id %></strong>
+      </div>
+      <div class="col-sm-3">
+        <p><strong><%= u.email %></strong></p>
+      </div>
+      <div class="col-sm-3">
+        <% u.roles.each do |r| %>
+        <p><%= r.title%></p>
+        <% end %>
+      </div>
+      <div class="col-sm-5">
+        <%= form_with(class: "nifty_form", url: users_updateRoles_path(:user_id => u.id), method: "post", local: true) do |f| %>
+          <% @roles.each do |role| %>
+          <%= f.check_box :role, {multiple: true, checked: u.roles.include?(role)}, role.id, nil %>
+            <%= f.label(:role, role.title) %>
+          <% end %>
+          <%= f.submit("Update") %>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+    <% if current_user.roles.include?(Role.where(title: "Administrator").take) %>
+      <div class="row border-top pt-3">
+        <div class="col-sm-1">
+          <strong><%= u.id %></strong>
+        </div>
+        <div class="col-sm-3">
+          <p><strong><%= u.email %></strong></p>
+        </div>
+        <div class="col-sm-3">
+          <% u.roles.each do |r| %>
+          <p><%= r.title%></p>
+          <% end %>
+        </div>
+        <div class="col-sm-5">
+          <%= form_with(class: "nifty_form", url: users_updateRoles_path(:user_id => u.id), method: "post", local: true) do |f| %>
+            <% @roles.each do |role| %>
+            <%= f.check_box :role, {multiple: true, checked: u.roles.include?(role)}, role.id, nil %>
+              <%= f.label(:role, role.title) %>
+            <% end %>
+              <%= f.submit("Update") %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+  <% end %>
+
+  </div>

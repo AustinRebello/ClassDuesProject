@@ -23,7 +23,16 @@
               <li class="nav-item active">
                 <%= link_to "Students", students_url, class: "nav-link  text-light" %>
               </li>
-              <%= link_to "New Role", new_role_url %>
+              <% if user_signed_in? && (current_user.roles.include?(Role.find_by(title: "Class Advisor")) || current_user.roles.include?(Role.find_by(title: "Administrator"))) %>
+                <li class="nav-item active">
+                  <%= link_to "Edit Roles", users_index_url, class: "nav-link text-light"%>
+                </li>
+              <% end %>
+              <% if user_signed_in? && current_user.roles.include?(Role.find_by(title: "Administrator")) %>
+              <li class="nav-item active">
+                <%= link_to "New Role", new_role_url, class: "nav-link text-light" %>
+              </li>
+              <% end %>
             </ul>
           </div>
           <p class="navbar-text pull-right  text-light">

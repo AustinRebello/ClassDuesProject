@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_student, only: [:show, :edit, :update, :destroy]
 
   # GET /students
@@ -8,6 +9,7 @@ class StudentsController < ApplicationController
   end
   def payDues
     @student = Student.find(params[:id])
+    authorize self
   end
   def import
       @file = params[:file]
@@ -18,13 +20,12 @@ class StudentsController < ApplicationController
       redirect_to graduating_classes_url
   end
   def file
+    authorize self
     @student = Student.new
     @classOf = GraduatingClass.find(params[:gcID])
   end
   def updateDues
     @student = Student.find(params[:id])
-    puts "Paid B"
-    puts params
     respond_to do |format|
       if @student.update(dues_params)
         format.html { redirect_to calculateDues_students_url(:id => @student.id), notice: 'Student was successfully updated.', method: 'patch' }
@@ -53,10 +54,12 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
     @student = Student.new
+    authorize self
   end
 
   # GET /students/1/edit
   def edit
+    authorize self
   end
 
   # POST /students
@@ -92,6 +95,7 @@ class StudentsController < ApplicationController
   # DELETE /students/1
   # DELETE /students/1.json
   def destroy
+    authorize self
     @student.destroy
     respond_to do |format|
       format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }

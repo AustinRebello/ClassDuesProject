@@ -1,31 +1,41 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Graduating Classes</h1>
+<br><br>
+<div class="container">
+  <div class="row border-top pt-3">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-3">
+      <p><strong>Graduation Year</strong></p>
+    </div>
+    <div class="col-sm-4">
+      <p><strong>Class Advisor One</strong></p>
+    </div>
+    <div class="col-sm-3">
+      <p><strong>Class Advisor Two</strong></p>
+    </div>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Gradyear</th>
-      <th>Classadvisorone</th>
-      <th>Classadvisortwo</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @graduating_classes.each do |graduating_class| %>
-      <tr>
-        <td><%= graduating_class.gradYear %></td>
-        <td><%= graduating_class.classAdvisorOne %></td>
-        <td><%= graduating_class.classAdvisorTwo %></td>
-        <td><%= link_to 'Show', graduating_class %></td>
-        <td><%= link_to 'Edit', edit_graduating_class_path(graduating_class) %></td>
-        <td><%= link_to 'Destroy', graduating_class, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
+  <% @graduating_classes.each do |g| %>
+    <div class="row border-top pt-3">
+      <div class="col-sm-1">
+      </div>
+      <div class="col-sm-3">
+        <strong><%= g.gradYear %></strong>
+      </div>
+      <div class="col-sm-4">
+        <strong><%= g.classAdvisorOne %></strong>
+      </div>
+      <div class="col-sm-3">
+        <strong><%= g.classAdvisorTwo%></strong>
+      </div>
+      <div class="col-sm-1">
+        <strong<%= link_to 'Show', g %></strong>
+        <strong<%= link_to 'Edit', edit_graduating_class_path(g) %></strong>
+        <strong<%= link_to 'Delete', g, method: :delete, data: { confirm: 'Are you sure?' } %></strong>
+      </div>
+    </div>
+  <% end %>
+<br><br><br>
 <%= link_to 'New Graduating Class', new_graduating_class_path %>

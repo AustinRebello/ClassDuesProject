@@ -26,6 +26,11 @@ ActiveRecord::Schema.define(version: 2019_11_12_135307) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "roles_users", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "role_id", null: false
+    t.bigint "user_id", null: false
+  end
+
   create_table "students", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "gradYear"
     t.integer "graduating_class_id"
