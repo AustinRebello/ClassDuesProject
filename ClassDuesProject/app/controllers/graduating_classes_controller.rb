@@ -1,7 +1,7 @@
 class GraduatingClassesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_graduating_class, only: [:show, :edit, :update, :destroy]
-
+  before_action {authorize self}
   # GET /graduating_classes
   # GET /graduating_classes.json
   def index

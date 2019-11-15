@@ -1,11 +1,13 @@
 class StudentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_action {authorize self}
 
   # GET /students
   # GET /students.json
   def index
     @students = Student.all
+    @user = current_user
   end
   def payDues
     @student = Student.find(params[:id])

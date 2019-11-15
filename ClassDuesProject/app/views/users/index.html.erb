@@ -54,9 +54,11 @@
         <div class="col-sm-5">
           <%= form_with(class: "nifty_form", url: users_updateRoles_path(:user_id => u.id), method: "post", local: true) do |f| %>
             <% @roles.each do |role| %>
-            <%= f.check_box :role, {multiple: true, checked: u.roles.include?(role)}, role.id, nil %>
-              <%= f.label(:role, role.title) %>
-            <% end %>
+              <% if true%>
+                <%= f.check_box :role, {multiple: true, checked: u.roles.include?(role)}, role.id, nil %>
+                  <%= f.label(:role, role.title) %>
+                <% end %>
+              <% end %>
               <%= f.submit("Update") %>
             <% end %>
           </div>

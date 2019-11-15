@@ -9,7 +9,7 @@
     <div class="col-sm-3">
       <p><strong>Graduation Year</strong></p>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       <p><strong>Class Advisor One</strong></p>
     </div>
     <div class="col-sm-3">
@@ -18,24 +18,30 @@
   </div>
 
   <% @graduating_classes.each do |g| %>
+    <% if (current_user.graduationYear == g.gradYear || current_user.roles.include?(Role.find_by(title: "Administrator"))) %>
     <div class="row border-top pt-3">
       <div class="col-sm-1">
       </div>
       <div class="col-sm-3">
         <strong><%= g.gradYear %></strong>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <strong><%= g.classAdvisorOne %></strong>
       </div>
       <div class="col-sm-3">
         <strong><%= g.classAdvisorTwo%></strong>
       </div>
-      <div class="col-sm-1">
-        <strong<%= link_to 'Show', g %></strong>
-        <strong<%= link_to 'Edit', edit_graduating_class_path(g) %></strong>
-        <strong<%= link_to 'Delete', g, method: :delete, data: { confirm: 'Are you sure?' } %></strong>
+      <div class="col-sm-2">
+        <strong><%= link_to 'Show', g %></strong>
+        <% if current_user.roles.include?(Role.find_by(title: "Administrator")) %>
+          | <strong><%= link_to 'Edit', edit_graduating_class_path(g) %></strong> |
+          <strong><%= link_to 'Delete', g, method: :delete, data: { confirm: 'Are you sure?' } %></strong>
+        <% end %>
       </div>
     </div>
+    <% end %>
   <% end %>
 <br><br><br>
+<% if current_user.roles.include?(Role.find_by(title: "Administrator")) %>
 <%= link_to 'New Graduating Class', new_graduating_class_path %>
+<% end %>

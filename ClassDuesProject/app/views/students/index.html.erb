@@ -14,17 +14,25 @@
   </thead>
 
   <tbody>
+
     <% @students.each do |student| %>
+      <% if (current_user.graduationYear == student.gradYear || current_user.roles.include?(Role.find_by(title: "Administrator"))) %>
+
       <tr>
         <td><%= student.gradYear %></td>
         <td><%= student.firstName %> <%= student.lastName %></td>
         <td><%= student.studentID %></td>
-        <td><%= student.balance %></td>
+        <td>$<%= student.balance %></td>
         <td><%= link_to 'Show', student %></td>
-        <td><%= link_to 'Edit', edit_student_path(student) %></td>
-        <td><%= link_to 'Delete', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.roles.include?(Role.find_by(title: "Administrator")) %>
+          <td><%= link_to 'Edit', edit_student_path(student) %></td>
+          <td><%= link_to 'Delete', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        <% if not current_user.roles.include?(Role.find_by(title: "No Role")) %>
         <td><%= link_to 'Pay Dues', payDues_students_url(:id => student.id)%></td>
+        <% end %>
       </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

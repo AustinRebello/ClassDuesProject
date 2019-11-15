@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 before_action  :authenticate_user!
+before_action {authorize self}
   def index
     @users = User.order(:email)
     @roles = Role.all

@@ -14,6 +14,17 @@
   <strong>Classadvisortwo:</strong>
   <%= @graduating_class.classAdvisorTwo %>
 </p>
+<% @sum = 0 %>
+<% @graduating_class.students.each do |s| %>
+  <% @sum = @sum + s.balance %>
+<% end %>
+<p>
+  <strong>Total Balance:</strong>
+  $<%= @sum %>
+</p>
 
+<% if current_user.roles.include?(Role.find_by(title: "Administrator")) %>
 <%= link_to 'Edit', edit_graduating_class_path(@graduating_class) %> |
+<% end %>
+<%= link_to 'View Students', students_url %>
 <%= link_to 'Back', graduating_classes_path %>

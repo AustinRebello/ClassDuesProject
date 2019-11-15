@@ -6,12 +6,21 @@ class GraduatingClassesControllerPolicy < ApplicationPolicy
     @record = record
   end
 
+  def index?
+    true
+  end
+  def show?
+    true
+  end
+
   def edit?
     @user.roles.include?(Role.where(title: "Administrator").take)
   end
+
   def new?
     @user.roles.include?(Role.where(title: "Administrator").take)
   end
+
   def delete?
     @user.roles.include?(Role.where(title: "Administrator").take)
   end
