@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Students</h1>
-
 <table>
   <thead>
     <tr>
@@ -9,6 +8,7 @@
       <th>Name</th>
       <th>Studentid</th>
       <th>Paidbalance</th>
+      <th>Email</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,13 +16,15 @@
   <tbody>
 
     <% @students.each do |student| %>
-      <% if (current_user.graduationYear == student.gradYear || current_user.roles.include?(Role.find_by(title: "Administrator"))) %>
+
+      <% if ((current_user.graduationYear == student.gradYear || current_user.roles.include?(Role.find_by(title: "Administrator")))&&(student.gradYear == @year.to_i || @year.to_i == 0)) %>
 
       <tr>
         <td><%= student.gradYear %></td>
         <td><%= student.firstName %> <%= student.lastName %></td>
         <td><%= student.studentID %></td>
         <td>$<%= student.balance %></td>
+        <td><%= student.email %></td>
         <td><%= link_to 'Show', student %></td>
         <% if current_user.roles.include?(Role.find_by(title: "Administrator")) %>
           <td><%= link_to 'Edit', edit_student_path(student) %></td>

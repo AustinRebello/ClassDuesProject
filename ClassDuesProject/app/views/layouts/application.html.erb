@@ -20,9 +20,11 @@
               <li class="nav-item active">
                 <%= link_to "Classes", graduating_classes_url, class: "nav-link  text-light" %>
               </li>
-              <li class="nav-item active">
-                <%= link_to "Students", students_url, class: "nav-link  text-light" %>
-              </li>
+              <% if user_signed_in? && !current_user.roles.empty? &&!current_user.roles.include?(Role.find_by(title: "No Role"))  %>
+                <li class="nav-item active">
+                  <%= link_to "Students", students_url(:year => 0), class: "nav-link  text-light" %>
+                </li>
+              <% end %>
               <% if user_signed_in? && (current_user.roles.include?(Role.find_by(title: "Class Advisor")) || current_user.roles.include?(Role.find_by(title: "Administrator"))) %>
                 <li class="nav-item active">
                   <%= link_to "Edit Roles", users_index_url, class: "nav-link text-light"%>

@@ -8,6 +8,7 @@ class StudentsController < ApplicationController
   def index
     @students = Student.all
     @user = current_user
+    @year = params[:year]
   end
   def payDues
     @student = Student.find(params[:id])
@@ -30,7 +31,7 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
     respond_to do |format|
       if @student.update(dues_params)
-        format.html { redirect_to calculateDues_students_url(:id => @student.id), notice: 'Student was successfully updated.', method: 'patch' }
+        format.html { redirect_to calculateDues_students_url(:id => @student.id), notice: 'Dues were successfully paid.', method: 'patch' }
         format.json { render :show, status: :ok, location: @student }
       else
         format.html { render :payDues}
@@ -43,9 +44,10 @@ class StudentsController < ApplicationController
     @student= Student.find(params[:id])
     @student.balance = @student.balance - @student.paidBalance
     if @student.save
-      redirect_to students_url(:id => @student.id)
+      RecieptsMailer.sendReciept(@student.id,current_user).deliver_now
+      redirect_to student_url(:id => @student.id)
     else
-      render calculateDues_students_url method: :post
+      redirect_to @student, notice: 'Dues could not be paid at this time...'
     end
   end
   # GET /students/1

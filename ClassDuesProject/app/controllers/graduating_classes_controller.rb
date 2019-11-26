@@ -16,16 +16,14 @@ class GraduatingClassesController < ApplicationController
   # GET /graduating_classes/new
   def new
     @graduating_class = GraduatingClass.new
-    authorize self
   end
 
   # GET /graduating_classes/1/edit
   def edit
-    authorize self
+
   end
   def delete
     @graduating_class = GraduatingClass.find(params[:id])
-    authorize self
   end
 
   # POST /graduating_classes

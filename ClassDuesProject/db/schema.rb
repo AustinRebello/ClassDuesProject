@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2019_11_12_135307) do
     t.integer "studentID"
     t.integer "balance"
     t.integer "paidBalance"
+    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

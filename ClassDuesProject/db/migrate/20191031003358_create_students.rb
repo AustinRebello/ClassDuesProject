@@ -8,6 +8,7 @@ class CreateStudents < ActiveRecord::Migration[5.2]
       t.integer :studentID
       t.integer :balance
       t.integer :paidBalance
+      t.string :email
 
       t.timestamps
     end

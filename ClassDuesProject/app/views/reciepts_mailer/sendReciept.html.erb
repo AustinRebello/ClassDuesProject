@@ -1,0 +1,15 @@
+
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hey <%= @student.firstName %>,</h1>
+    <p>
+      Thank you for paying class dues!
+      Your payment of $<%= @student.paidBalance %> has been recieved and processed.
+      <br>Date: <%= Date.today %>
+    </p>
+    <h4>Your remaining balance is $<%= @student.balance %></h4>
+
+    <p>Sincerely, <br>The Class of <%= @student.gradYear %></p>
+  </body>

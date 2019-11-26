@@ -15,9 +15,10 @@ class Student < ApplicationRecord
       newStud=Student.new
       newStud.gradYear=gY
       newStud.graduating_class_id=gID
-      newStud.studentID=row[1]
-      newStud.firstName=row[2]
-      newStud.lastName=row[3]
+      newStud.studentID=row[0]
+      newStud.firstName=row[1]
+      newStud.lastName=row[2]
+      newStud.email=row[3]
       newStud.balance=100
       newStud.paidBalance=0
       puts "Foreign Key: #{newStud.graduating_class_id}"
