@@ -17,10 +17,10 @@
 
     <% @students.each do |student| %>
 
-      <% if ((current_user.graduationYear == student.gradYear || current_user.roles.include?(Role.find_by(title: "Administrator")))&&(student.gradYear == @year.to_i || @year.to_i == 0)) %>
+      <% if ((current_user.graduationYear == student.graduating_class.gradYear || current_user.roles.include?(Role.find_by(title: "Administrator")))&&(student.graduating_class.gradYear == @year.to_i || @year.to_i == 0)) %>
 
       <tr>
-        <td><%= student.gradYear %></td>
+        <td><%= student.graduating_class.gradYear %></td>
         <td><%= student.firstName %> <%= student.lastName %></td>
         <td><%= student.studentID %></td>
         <td>$<%= student.balance %></td>

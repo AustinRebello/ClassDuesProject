@@ -18,13 +18,18 @@
 <% @graduating_class.students.each do |s| %>
   <% @sum = @sum + s.balance %>
 <% end %>
-<p>
-  <strong>Total Balance:</strong>
-  $<%= @sum %>
-</p>
+<% if !current_user.roles.include?(Role.find_by(title: "No Role")) %>
+  <p>
+    <strong>Total Balance:</strong>
+    $<%= @sum %>
+  </p>
+<% end %>
 
 <% if current_user.roles.include?(Role.find_by(title: "Administrator")) %>
-<%= link_to 'Edit', edit_graduating_class_path(@graduating_class) %> |
+  <%= link_to 'Edit', edit_graduating_class_path(@graduating_class) %> |
+  <%= link_to 'Add Student CSV file', file_students_url(:gcID => @graduating_class.id) %> | 
 <% end %>
-<%= link_to 'View Students', students_url(:year => @graduating_class.gradYear) %>
+<% if !current_user.roles.include?(Role.find_by(title: "No Role")) %>
+  <%= link_to 'View Students', students_url(:year => @graduating_class.gradYear) %>
+<% end %>
 <%= link_to 'Back', graduating_classes_path %>

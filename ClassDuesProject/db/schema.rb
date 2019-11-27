@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 2019_11_12_135307) do
   end
 
   create_table "students", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "gradYear"
     t.integer "graduating_class_id"
     t.string "firstName"
     t.string "lastName"

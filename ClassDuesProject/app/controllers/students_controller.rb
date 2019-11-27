@@ -19,7 +19,7 @@ class StudentsController < ApplicationController
       @classOf = GraduatingClass.find(params[:graduating_class_id])
       @gID = @classOf.id
       @gY = @classOf.gradYear
-      Student.import(@file, @gID, @gY)
+      Student.import(@file, @gID)
       redirect_to graduating_classes_url
   end
   def file
@@ -70,7 +70,6 @@ class StudentsController < ApplicationController
   # POST /students.json
   def create
     @student = Student.new(student_params)
-
     respond_to do |format|
       if @student.save
         format.html { redirect_to @student, notice: 'Student was successfully created.' }
@@ -115,9 +114,9 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:gradYear, :graduation_classes_id, :firstName, :lastName, :studentID, :balance, :paidBalance)
+      params.require(:student).permit( :graduation_classes_id, :firstName, :lastName, :studentID, :balance, :paidBalance, :email)
     end
     def dues_params
-      params.permit(:gradYear, :graduation_classes_id, :firstName, :lastName, :studentID, :balance, :paidBalance)
+      params.permit( :graduation_classes_id, :firstName, :lastName, :studentID, :balance, :paidBalance, :email)
     end
 end

@@ -10,15 +10,9 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= form.label :gradYear %>
-    <%= form.number_field :gradYear %>
-  </div>
-
-  <div class="field">
-    <%= form.label :graduating_class_id %>
-    <%= form.number_field :graduating_class_id %>
+    <%= form.label "Select Graduating Year" %>
+    <%= form.collection_select :graduating_class_id, GraduatingClass.order(:gradYear), :id, :gradYear %>
   </div>
 
   <div class="field">
