@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Students</h1>
+
 <table>
   <thead>
     <tr>
@@ -14,7 +15,9 @@
   </thead>
 
   <tbody>
-
+    <% if current_user.roles.include?(Role.find_by(title: "Administrator")) %>
+      <%= link_to 'New Student', new_student_path %>
+    <% end %>
     <% @students.each do |student| %>
 
       <% if ((current_user.graduationYear == student.graduating_class.gradYear || current_user.roles.include?(Role.find_by(title: "Administrator")))&&(student.graduating_class.gradYear == @year.to_i || @year.to_i == 0)) %>
@@ -25,10 +28,10 @@
         <td><%= student.studentID %></td>
         <td>$<%= student.balance %></td>
         <td><%= student.email %></td>
-        <td><%= link_to 'Show', student %></td>
-        <% if current_user.roles.include?(Role.find_by(title: "Administrator")) %>
-          <td><%= link_to 'Edit', edit_student_path(student) %></td>
-          <td><%= link_to 'Delete', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', student %> |</td>
+        <% if current_user.roles.include?(Role.find_by(title: "Administrator")) || current_user.roles.include?(Role.find_by(title: "Class Advisor"))  %>
+          <td><%= link_to 'Edit', edit_student_path(student) %> |</td>
+          <td><%= link_to 'Delete', student, method: :delete, data: { confirm: 'Are you sure?' } %> |</td>
         <% end %>
         <% if not current_user.roles.include?(Role.find_by(title: "No Role")) %>
         <td><%= link_to 'Pay Dues', payDues_students_url(:id => student.id)%></td>
@@ -41,4 +44,6 @@
 
 <br>
 
-<%= link_to 'New Student', new_student_path %>
+<% if current_user.roles.include?(Role.find_by(title: "Administrator")) %>
+  <%= link_to 'New Student', new_student_path %>
+<% end %>

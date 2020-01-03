@@ -1,6 +1,6 @@
 <h1>Editing Graduating Class</h1>
 
 <%= render 'form', graduating_class: @graduating_class %>
-<%=link_to "Add Student CSV File", file_students_url(:gcID => @graduating_class.id) %></p>
+<%=link_to "Add Student CSV File", file_students_url(:gcID => @graduating_class.id), data: { confirm: 'This will delete all current students and their data, are you sure you want to add a new file?' } %></p>
 <%= link_to 'Show', @graduating_class %> |
 <%= link_to 'Back', graduating_classes_path %>

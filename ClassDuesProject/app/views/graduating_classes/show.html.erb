@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
-
+<p>
+  <strong>ID:</strong>
+  <%= @graduating_class.id %>
+</p>
 <p>
   <strong>Gradyear:</strong>
   <%= @graduating_class.gradYear %>
@@ -27,9 +30,10 @@
 
 <% if current_user.roles.include?(Role.find_by(title: "Administrator")) %>
   <%= link_to 'Edit', edit_graduating_class_path(@graduating_class) %> |
-  <%= link_to 'Add Student CSV file', file_students_url(:gcID => @graduating_class.id) %> | 
+  <%= link_to 'Add Student CSV file', file_students_url(:gcID => @graduating_class.id), data: { confirm: 'This will delete all current students and their data, are you sure you want to add a new file?' } %> |
 <% end %>
 <% if !current_user.roles.include?(Role.find_by(title: "No Role")) %>
-  <%= link_to 'View Students', students_url(:year => @graduating_class.gradYear) %>
+  <% @view = "View "+ @graduating_class.gradYear.to_s + " Students" %>
+  <%= link_to @view, students_url(:year => @graduating_class.gradYear) %> |
 <% end %>
 <%= link_to 'Back', graduating_classes_path %>

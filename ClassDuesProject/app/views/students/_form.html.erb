@@ -12,7 +12,7 @@
   <% end %>
   <div class="field">
     <%= form.label "Select Graduating Year" %>
-    <%= form.collection_select :graduating_class_id, GraduatingClass.order(:gradYear), :id, :gradYear %>
+    <%= form.collection_select :graduating_class_id, GraduatingClass.order(:gradYear), :id, :gradYear  %>
   </div>
 
   <div class="field">

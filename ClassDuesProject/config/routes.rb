@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   get 'students/delete'
   get 'pages/index'
   get 'students/file'
+
   get 'users/index'
   post 'users/updateRoles'
+  get 'users/destroy'
   resources :graduating_classes do
     collection {
       get :delete

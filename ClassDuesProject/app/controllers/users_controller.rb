@@ -18,4 +18,12 @@ before_action {authorize self}
     authorize self
     redirect_to users_index_url
   end
+  def destroy
+    @user=User.find(params[:id])
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to users_index_path, notice: 'User was successfully deleted.' }
+      format.json { head :no_content }
+    end
+  end
 end

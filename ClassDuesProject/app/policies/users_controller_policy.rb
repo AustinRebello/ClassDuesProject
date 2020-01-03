@@ -12,4 +12,7 @@ class UsersControllerPolicy < ApplicationPolicy
   def updateRoles?
     (@user.roles.include?(Role.where(title: "Administrator").take) || @user.roles.include?(Role.where(title: "Class Advisor").take))
   end
+  def destroy?
+    @user.roles.include?(Role.where(title: "Administrator").take)
+  end
 end

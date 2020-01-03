@@ -24,8 +24,10 @@ class StudentsController < ApplicationController
   end
   def file
     authorize self
-    @student = Student.new
     @classOf = GraduatingClass.find(params[:gcID])
+    #@classOf.students.destroy
+    @student = Student.new
+
   end
   def updateDues
     @student = Student.find(params[:id])
@@ -114,9 +116,9 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit( :graduation_classes_id, :firstName, :lastName, :studentID, :balance, :paidBalance, :email)
+      params.require(:student).permit( :graduating_class_id, :firstName, :lastName, :studentID, :balance, :paidBalance, :email)
     end
     def dues_params
-      params.permit( :graduation_classes_id, :firstName, :lastName, :studentID, :balance, :paidBalance, :email)
+      params.permit( :graduating_class_id, :firstName, :lastName, :studentID, :balance, :paidBalance, :email)
     end
 end
