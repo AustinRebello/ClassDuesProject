@@ -34,7 +34,7 @@
   <% @student.receipts.each do |r| %>
     <p>Paid by: <%= r.firstName %> <%= r.lastName %></p>
     <p>Paid to: <%= r.recievedFrom %></p>
-    <p>Pain on: <%= r.dateAccepted %></p>
+    <p>Paid on: <%= r.dateAccepted %></p>
     <p class="border-bottom">Payment amount: <%= r.paidBalance %></p>
   <% end %>
 </div>

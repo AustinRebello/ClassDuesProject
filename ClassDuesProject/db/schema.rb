@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2020_01_13_145501) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.integer "graduationYear"
+    t.string "fullName"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

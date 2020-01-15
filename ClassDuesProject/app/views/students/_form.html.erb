@@ -11,8 +11,7 @@
     </div>
   <% end %>
   <div class="field">
-    <%= form.label "Select Graduating Year" %>
-    <%= form.collection_select :graduating_class_id, GraduatingClass.order(:gradYear), :id, :gradYear  %>
+    <%= form.hidden_field :graduating_class_id, :value => GraduatingClass.find_by(:gradYear => current_user.graduationYear).id  %>
   </div>
 
   <div class="field">

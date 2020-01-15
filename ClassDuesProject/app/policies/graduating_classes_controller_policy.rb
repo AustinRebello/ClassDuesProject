@@ -17,18 +17,18 @@ class GraduatingClassesControllerPolicy < ApplicationPolicy
     @user.roles.include?(Role.where(title: "Administrator").take)
   end
   def new?
-    @user.roles.include?(Role.where(title: "Administrator").take)
+    edit?
   end
   def delete?
-    @user.roles.include?(Role.where(title: "Administrator").take)
+    edit?
   end
   def update?
     edit?
   end
   def create?
-    new?
+    edit?
   end
   def destroy?
-    delete?
+    edit?
   end
 end

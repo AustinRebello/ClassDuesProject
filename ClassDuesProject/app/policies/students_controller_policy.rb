@@ -14,7 +14,7 @@ class StudentsControllerPolicy < ApplicationPolicy
   end
 
   def edit?
-    (@user.roles.include?(Role.where(title: "Administrator").take) || @user.roles.include?(Role.where(title: "Class Advisor").take))
+     @user.roles.include?(Role.where(title: "Class Advisor").take)
   end
   def update?
     edit?
@@ -23,18 +23,17 @@ class StudentsControllerPolicy < ApplicationPolicy
     new?
   end
   def destroy?
-    delete?
+    edit?
   end
+  def new?
+     edit?
+  end
+  def delete?
+    edit?
+  end
+
   def import?
     @user.roles.include?(Role.where(title: "Administrator").take)
-  end
-
-  def new?
-    (@user.roles.include?(Role.where(title: "Administrator").take) || @user.roles.include?(Role.where(title: "Class Advisor").take))
-  end
-
-  def delete?
-    (@user.roles.include?(Role.where(title: "Administrator").take) || @user.roles.include?(Role.where(title: "Class Advisor").take))
   end
 
   def payDues?
