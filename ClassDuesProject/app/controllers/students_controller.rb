@@ -25,14 +25,18 @@ class StudentsController < ApplicationController
   def file
     authorize self
     @classOf = GraduatingClass.find(params[:gcID])
-    #@classOf.students.destroy
+    @classOf.students.destroy
     @student = Student.new
 
   end
   def updateDues
     @student = Student.find(params[:id])
+    @recievedFrom = params[:recievedFrom]
+    @dateAccepted = params[:dateAccepted]
+    @paidBalance  = params[:paidBalance]
     respond_to do |format|
       if @student.update(dues_params)
+        Receipt.create(student_id: @student.id, firstName: @student.firstName, lastName: @student.lastName, dateAccepted: @dateAccepted, recievedFrom: @recievedFrom, paidBalance: @paidBalance )
         format.html { redirect_to calculateDues_students_url(:id => @student.id), notice: 'Dues were successfully paid.', method: 'patch' }
         format.json { render :show, status: :ok, location: @student }
       else
@@ -106,6 +110,12 @@ class StudentsController < ApplicationController
       format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def email
+    @students = Student.all
+    RecieptsMailer.remind(@students, current_user).deliver_now
+    redirect_to students_url
   end
 
   private

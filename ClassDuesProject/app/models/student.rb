@@ -1,6 +1,7 @@
 class Student < ApplicationRecord
   validates :studentID, uniqueness: true
   belongs_to :graduating_class
+  has_many :receipts
   require 'csv'
   def self.import(f,gID)
     csv_text = File.read(f.path)

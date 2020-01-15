@@ -50,4 +50,8 @@ class StudentsControllerPolicy < ApplicationPolicy
   def file?
     @user.roles.include?(Role.where(title: "Administrator").take) || @user.roles.include?(Role.where(title: "Class Advisor").take) || @user.roles.include?(Role.where(title: "Class Treasurer").take)
   end
+def email?
+  @user.roles.include?(Role.where(title: "Class Advisor").take)
+end
+
 end

@@ -3,8 +3,16 @@
 <h1>Pay Dues</h1>
 
 <%= form_with  class: "nifty_form", url: updateDues_students_url(id: @student.id), method: :patch do |f| %>
-<p>Enter the amount of the payment:</p>
-<p><%= f.number_field :paidBalance%></p>
+  <p>Enter the amount of the payment:</p>
+  <p><%= f.number_field :paidBalance%></p>
+
+  <p>Date pain on reciept:</p>
+  <%= f.text_field :dateAccepted %>
+
+  <p>Recieved by on reciept:</p>
+  <%= f.text_field :recievedFrom %>
+
+
   <p><%= f.submit "Confirm Payment", class: "bg-primary text-light rounded p-1"%> <%=link_to "View All Students", students_url(:year => @student.graduating_class.gradYear) %></p>
 <% end %>
 </div>

@@ -13,7 +13,7 @@
     </div>
   </div>
   <% @users.each do |u| %>
-  <% if current_user.roles.include?(Role.where(title: "Class Advisor").take)%>
+  <% if current_user.roles.include?(Role.where(title: "Class Advisor").take) && !current_user.roles.include?(Role.where(title: "Administrator").take)%>
     <% if not u.roles.include?(Role.where(title: "Administrator").take) || u.graduationYear != current_user.graduationYear%>
     <div class="row border-top pt-3 ml-5">
       <div class="col-sm-1">

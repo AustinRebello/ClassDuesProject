@@ -13,7 +13,12 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require dataTables/jquery.dataTables
+//= require_tree .
+
+$( document ).on('turbolinks:load', function() {
+  $('#students').dataTable()
+});

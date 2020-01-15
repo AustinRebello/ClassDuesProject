@@ -3,13 +3,12 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hey <%= @student.firstName %>,</h1>
+    <h1>Dear <%= @student.firstName %> <%= @student.lastName %>,</h1>
     <p>
-      Thank you for paying class dues!
-      Your payment of $<%= @student.paidBalance %> has been recieved and processed.
+      You still owe class dues!
+      Your unpaid balance equals $<%= @student.balance %> and must be up to date for you to attend school events.
       <br>Date: <%= Date.today %>
     </p>
-    <h4>Your remaining balance is $<%= @student.balance %></h4>
 
     <p>Sincerely, <br>The Class of <%= @student.graduating_class.gradYear %></p>
   </body>

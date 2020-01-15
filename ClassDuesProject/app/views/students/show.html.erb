@@ -26,6 +26,23 @@
   $<%= @student.balance %>
 </p>
 
+
+
+
+<div>
+  <h2>Past Transactions</h2>
+  <% @student.receipts.each do |r| %>
+    <p>Paid by: <%= r.firstName %> <%= r.lastName %></p>
+    <p>Paid to: <%= r.recievedFrom %></p>
+    <p>Pain on: <%= r.dateAccepted %></p>
+    <p class="border-bottom">Payment amount: <%= r.paidBalance %></p>
+  <% end %>
+</div>
+
+
+
+<br>
+
 <% if (current_user.roles.include?(Role.find_by(title: "Administrator"))|| current_user.roles.include?(Role.find_by(title: "Class Advisor")))%>
   <%= link_to 'Edit', edit_student_path(@student) %> |
 <% end %>

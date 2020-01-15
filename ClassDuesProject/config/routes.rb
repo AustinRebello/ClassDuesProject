@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get :payDues
       patch :updateDues
       get :calculateDues
+      get :email
     }
   end
 
